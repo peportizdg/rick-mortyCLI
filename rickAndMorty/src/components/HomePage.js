@@ -120,7 +120,6 @@ const takeFavourite=(character) =>{
 
   return (
     <SafeAreaView style={{backgroundColor: 'black'}}>
-    <>
     <ImageBackground source={{uri: fondo}} resizeMode="cover" style={styles.backgroundImage}>
     <Image source={{uri: logo}} style={styles.logo}></Image>
       <View style={styles.screen}>
@@ -166,7 +165,6 @@ const takeFavourite=(character) =>{
       setCharacterModal={setCharacterModal}/>
       </View>
       </ImageBackground>    
-              </>
               </SafeAreaView>
   )
 }

@@ -21,7 +21,6 @@ const CharacterViewModal =({
               <Text style={styles.itemText}>{characterModalItem.gender}</Text>
               <Text style={styles.itemText}>{origin.name}</Text>
               <Text style={styles.itemText}>{location.name}</Text>
-              
             </View>
             <Text style={styles.filterTitle} onPress={() => dispatch(setCharacterModal(false))}>Close</Text>
           </View>
