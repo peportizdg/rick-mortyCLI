@@ -144,7 +144,6 @@ const takeFavourite=(character) =>{
         takeFavourite= {takeFavourite}
         flatList={flatList}
         />
-
       <FiltersModal
         showModal={showModal}
         species={species}

@@ -1,96 +1,86 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Text, View, Image, TouchableOpacity, Animated, Easing} from 'react-native';
+import { Text, View, Image, TouchableOpacity, Animated } from 'react-native';
 import styles from '../styles/CharacterInListStyles';
-import {ref, onChildAdded, onChildRemoved } from "firebase/database";
+import { ref, onChildAdded, onChildRemoved } from "firebase/database";
 import { db } from '../../firebaseConfig';
-import { useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
-
-const CharacterInList =({
-    item,
-    characterTab,
-    addFavourite,
-    takeFavourite,
+const CharacterInList = ({
+  item,
+  characterTab,
+  addFavourite,
+  takeFavourite,
 }) => {
-    const [isFavorite, setIsFavorite] = useState(false);
-    const { data }  = useSelector(state => state.application);
-    useEffect(() => {
-      const charactersRef = ref(db, 'favourites/');
-      setIsFavorite(false)
-      onChildAdded(charactersRef, (char) => {
-          if (char.val().character.id==item.id){
-              setIsFavorite(true);
-          }
-      })
+  const [isFavorite, setIsFavorite] = useState(false);
+  const { data } = useSelector(state => state.application);
 
-      onChildRemoved(charactersRef, (char) => {
-          if (char.val().character.id==item.id){
-              setIsFavorite(false);
-          }
-      });
+  useEffect(() => {
+    const charactersRef = ref(db, 'favourites/');
+    setIsFavorite(false);
 
-  }, [data])
-    const toggleFavorite = () => {
-      if(isFavorite == true){
-        takeFavourite(item)
-        
-      }else{
-        addFavourite(item);
+    onChildAdded(charactersRef, (char) => {
+      if (char.val().character.id === item.id) {
+        setIsFavorite(true);
       }
+    });
+
+    onChildRemoved(charactersRef, (char) => {
+      if (char.val().character.id === item.id) {
+        setIsFavorite(false);
+      }
+    });
+
+  }, [data]);
+
+  const pulsateAnimation = useRef(new Animated.Value(1)).current;
+
+  const pulsate = (positive = true) => {
+    Animated.sequence([
+      Animated.timing(pulsateAnimation, {
+        toValue: positive ? 1.2 : 0.8,
+        duration: 200,
+        useNativeDriver: true,
+      }),
+      Animated.timing(pulsateAnimation, {
+        toValue: 1,
+        duration: 200,
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
+
+  const toggleFavorite = () => {
+    if (isFavorite) {
+      takeFavourite(item);
+      pulsate(false); // Negative pulsate 
+    } else {
+      addFavourite(item);
+      pulsate(); // Positive pulsate 
     }
-    const flipAnimation = useRef( new Animated.Value( 0 ) ).current;
-    let flipRotation = 0;
-    flipAnimation.addListener( ( { value } ) => flipRotation = value );
-    const fliptStyle = {
-      transform: [ isFavorite ?
-        { rotateY: flipAnimation.interpolate( {
-          inputRange: [ 0, 360 ],
-          outputRange: [ "0deg", "1080deg" ]
-        } ) } : { rotateY: flipAnimation.interpolate( {
-          inputRange: [ 0, 360 ],
-          outputRange: [ "0deg", "720deg" ]
-        } ) }
-      ]
-    };
+  };
 
-    const flipFav = () => {
-      Animated.timing( flipAnimation, {
-        toValue: 360,
-        duration: 1000,
-        useNativeDriver: true,
-      } ).start();
-    };
-    const flipNoFav = () => {
-      Animated.timing( flipAnimation, {
-        toValue: 0,
-        duration: 2000,
-        useNativeDriver: true,
-      } ).start();
-    };
-
-    return(
-        <Animated.View style={{...fliptStyle  }}>
-        <View style={styles.itemRow}>
-          <TouchableOpacity onPress={() => characterTab(item)}>
-          <Image style={styles.itemImage} source={{uri: item.image}} />
-            <View style={{flexDirection:"row"}}>
-              <Text style={styles.itemText}>{item.name}</Text>
-              {!isFavorite && (
-                <TouchableOpacity style = {styles.favoriteButton} onPress = {() => (toggleFavorite(), !!flipRotation ? flipNoFav() : flipFav())}>
-                  <Image style={styles.favoriteImage} source = {require('../../assets/likeVacio.png')}/>
-                </TouchableOpacity>
-              )}
-              {isFavorite && (
-                <TouchableOpacity style = {styles.favoriteButton} onPress = {() => (toggleFavorite(), !!flipRotation ? flipNoFav() : flipFav())}>
-                  <Image style={styles.favoriteImage} source = {require('../../assets/likeLleno.png')}/>
-                </TouchableOpacity>
-              )}
-            </View>
-          </TouchableOpacity>
-        </View>
-        </Animated.View>
-    )
-}
+  return (
+    <Animated.View style={{ transform: [{ scale: pulsateAnimation }] }}>
+      <View style={styles.itemRow}>
+        <TouchableOpacity onPress={() => characterTab(item)}>
+          <Image style={styles.itemImage} source={{ uri: item.image }} />
+          <View style={{ flexDirection: "row" }}>
+            <Text style={styles.itemText}>{item.name}</Text>
+            {!isFavorite && (
+              <TouchableOpacity style={styles.favoriteButton} onPress={() => toggleFavorite()}>
+                <Image style={styles.favoriteImage} source={require('../../assets/likeVacio.png')} />
+              </TouchableOpacity>
+            )}
+            {isFavorite && (
+              <TouchableOpacity style={styles.favoriteButton} onPress={() => toggleFavorite()}>
+                <Image style={styles.favoriteImage} source={require('../../assets/likeLleno.png')} />
+              </TouchableOpacity>
+            )}
+          </View>
+        </TouchableOpacity>
+      </View>
+    </Animated.View>
+  );
+};
 
 export default CharacterInList;
-

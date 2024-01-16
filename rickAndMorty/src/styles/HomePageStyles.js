@@ -7,7 +7,6 @@ const styles = StyleSheet.create({
     logo: {
       height: '19%',
       width:'100%',
-      marginTop: '30%'
     },
     backgroundImage:{
       height:'100%',
@@ -15,9 +14,9 @@ const styles = StyleSheet.create({
       justifyContent: 'center'
     },
     screen:{
-      alignSelf: 'center'
+      alignSelf: 'center',
+      flex: 1,
     },
-  
     loader: {
       marginTop: 10,
       alignItems: 'center'
@@ -25,7 +24,7 @@ const styles = StyleSheet.create({
     textInputStyle: {
       borderWidth: 1,
       paddingLeft: '7%',
-      marginBottom: '3%',
+      marginBottom: '1%',
       alignSelf: 'center',
       flex: 2,
       borderColor: '#7FFF00',

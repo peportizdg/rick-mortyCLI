@@ -9,11 +9,10 @@ const CommentModalInput =({
     setCommentModal,
     commentModal,
     characterIDComment,
-
-} ) => {
+}) => {
     const {}  = useSelector(state => state.application);
     const dispatch = useDispatch();
-    const[text, setText] = useState('');
+    const [text, setText] = useState('');
 
     const cancelComment= (id) =>{
         setText('');
@@ -27,41 +26,48 @@ const CommentModalInput =({
         dispatch(setCharacterComment(text))
         setText('');
     }
+
     const closeModal = () =>{
         setCommentModal(false);
     }
 
+    const handleTextChange = (inputText) => {
+        // Limiting input to 50 characters
+        if (inputText.length <= 50) {
+            setText(inputText);
+        }
+    }
 
     return(
-    <Modal transparent={true} visible={commentModal} animationType="slide">
-      <View style={styles.modalContainer}>
-        <View style={styles.modalCard}>
-        <View style={styles.textInputFilters}>
-              <Text style={styles.filterTitle}>  </Text>
-              <TextInput style={styles.filterTextInputStyle}
-                placeholder= "Enter comment"
-                placeholderTextColor= '#7FFF00'
-                value={text}
-                onChangeText={setText}
-              />
-          </View>
-        <View style={styles.commentButtons}> 
-         <TouchableOpacity onPress={() => {insertComment(characterIDComment)}}> 
-            <Text style={styles.butonsText} >Save</Text> 
-         </TouchableOpacity>
-         <TouchableOpacity onPress={() => {cancelComment(characterIDComment)}}>
-            <Text style={styles.butonsText} >Delete</Text>
-        </TouchableOpacity>
-        <TouchableOpacity onPress={() => {closeModal()}}>
-            <Text style={styles.butonsText} >Close</Text>
-        </TouchableOpacity>
-        </View> 
-        </View>
-        </View>
-
-    </Modal>
+        <Modal transparent={true} visible={commentModal} animationType="slide">
+            <View style={styles.modalContainer}>
+                <View style={styles.modalCard}>
+                    <View style={styles.textInputFilters}>
+                        <Text style={styles.filterTitle}>  </Text>
+                        <TextInput
+                            style={styles.filterTextInputStyle}
+                            placeholder="Enter comment"
+                            placeholderTextColor='#7FFF00'
+                            value={text}
+                            onChangeText={handleTextChange}
+                            maxLength={50} // Setting maximum length to 50 characters
+                        />
+                    </View>
+                    <View style={styles.commentButtons}> 
+                        <TouchableOpacity onPress={() => {insertComment(characterIDComment)}}>
+                            <Text style={styles.butonsText}>Save</Text> 
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => {cancelComment(characterIDComment)}}>
+                            <Text style={styles.butonsText}>Delete</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => {closeModal()}}>
+                            <Text style={styles.butonsText}>Close</Text>
+                        </TouchableOpacity>
+                    </View> 
+                </View>
+            </View>
+        </Modal>
     )
 }
 
 export default CommentModalInput;
-

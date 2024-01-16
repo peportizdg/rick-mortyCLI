@@ -29,9 +29,11 @@ const styles = StyleSheet.create({
     butons: {
       alignItems: 'center',
       justifyContent: 'center',
-      paddingVertical: 2,
+      height: 30,
       paddingHorizontal: 3,
       borderRadius: 4,
+      borderColor: '#97ce4c',
+      borderWidth: 2,
       elevation: 3,
       backgroundColor: 'black',
       marginHorizontal: 3,
@@ -42,7 +44,7 @@ const styles = StyleSheet.create({
       lineHeight: 21,
       fontWeight: 'bold',
       letterSpacing: 0.25,
-      color: '#7FFF00',
+      color: '#97ce4c',
       alignContent: 'center',
     },
     butonsContainer:{
