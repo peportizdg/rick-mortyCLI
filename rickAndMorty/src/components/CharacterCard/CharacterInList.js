@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Text, View, Image, TouchableOpacity, Animated } from 'react-native';
-import styles from '../styles/CharacterInListStyles';
+import styles from './CharacterInListStyles';
 import { ref, onChildAdded, onChildRemoved } from "firebase/database";
-import { db } from '../../firebaseConfig';
+import { db } from '../../../firebaseConfig.js';
 import { useSelector } from 'react-redux';
 
 const CharacterInList = ({

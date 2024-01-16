@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 import { useDispatch} from 'react-redux';
-import { setShowModal} from '../store/Reducers';
+import { setShowModal} from '../../store/Reducers';
 const FilterButtons =({
     rerender,
     clearModalFilters,

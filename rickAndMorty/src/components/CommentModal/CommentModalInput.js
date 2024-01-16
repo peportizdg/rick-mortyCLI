@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Text, View, Modal, TextInput, TouchableOpacity} from 'react-native';
-import styles from '../styles/CommentModalInputStyles';
-import { setCharacterComment } from '../store/Reducers';
+import styles from './CommentModalInputStyles';
+import { setCharacterComment } from '../../store/Reducers';
 import { useDispatch, useSelector } from 'react-redux';
 
 const CommentModalInput =({

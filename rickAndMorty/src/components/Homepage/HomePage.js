@@ -1,17 +1,17 @@
 import React,{useEffect, useRef} from 'react';
 import { View, ActivityIndicator, Image, TextInput, SafeAreaView, ImageBackground } from 'react-native';
-import styles from '../styles/HomePageStyles';
+import styles from './HomePageStyles.js';
 import DefaultImage from '../../assets/fondo.png';
 import DefaultImage2 from '../../assets/logo.png';
-import FilterButtons from './FilterButtons';
-import CharactersList from './CharactersList';
-import FiltersModal from './FiltersModal';
-import BusquedaVaciaModal from './BusquedaVaciaModal';
-import CharacterViewModal from './CharacterViewModal';
+import FilterButtons from '../Filter/FilterButtons';
+import CharactersList from '../ListOfCharacters/CharactersList';
+import FiltersModal from '../Filter/FiltersModal';
+import BusquedaVaciaModal from '../Search/BusquedaVaciaModal';
+import CharacterViewModal from '../CharacterView/CharacterViewModal';
 import {ref, set, remove } from "firebase/database";
-import { db } from '../../firebaseConfig';
+import { db } from '../../../firebaseConfig.js';
 import { useSelector ,useDispatch} from 'react-redux';
-import { setLastPage, setStatus, setCharacterModalItem, setCharacterLocation, setCharacterOrigin, setType, setSpecies, setGender, setCharacterModal,setData, setisLoading, setfilterSucces, setSearch, setShowModal, setpageCurrent} from '../store/Reducers';
+import { setLastPage, setStatus, setCharacterModalItem, setCharacterLocation, setCharacterOrigin, setType, setSpecies, setGender, setCharacterModal,setData, setisLoading, setfilterSucces, setSearch, setShowModal, setpageCurrent} from '../../store/Reducers';
 
 
 const logo = Image.resolveAssetSource(DefaultImage2).uri;

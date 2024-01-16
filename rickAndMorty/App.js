@@ -1,7 +1,7 @@
 import React from 'react';
 import { Image } from 'react-native';
-import HomePage from './src/components/HomePage.js';
-import FavoritePage from  './src/components/FavoritePage';
+import HomePage from './src/components/Homepage/HomePage.js';
+import FavoritePage from  './src/components/Homepage/FavoritePage.js';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Provider } from 'react-redux';
@@ -25,12 +25,12 @@ export default function App(){
                         tabBarIcon: () => {
                             if (route.name === 'home') {
                                 return( 
-                                    <Image style = {{ width: 50, height: 50  }} source = {require('./assets/portal.png')} />
+                                    <Image style = {{ width: 50, height: 50  }} source = {require('./src/assets/portal.png')} />
                     )}
 
                             else if (route.name === 'favorites') {
                                 return (
-                                    <Image style = {{ width: 50, height: 50  }} source = {require('./assets/likeportal.png')} />
+                                    <Image style = {{ width: 50, height: 50  }} source = {require('./src/assets/likeportal.png')} />
                     )}
                         },
                                     

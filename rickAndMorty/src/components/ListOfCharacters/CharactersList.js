@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, FlatList} from 'react-native';
-import CharacterInList from './CharacterInList';
+import CharacterInList from '../CharacterCard/CharacterInList';
 import { useSelector } from 'react-redux';
 
 

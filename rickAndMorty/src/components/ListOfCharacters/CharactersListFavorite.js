@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, FlatList, Text} from 'react-native';
-import CharacterInListFavorite from './CharacterInListFavorite';
+import CharacterInListFavorite from '../CharacterCard/CharacterInListFavorite';
 import { useSelector } from 'react-redux';
 
 

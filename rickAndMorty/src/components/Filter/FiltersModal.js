@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text, View, TextInput, TouchableOpacity, Modal } from 'react-native';
-import styles from '../styles/FiltersModalStyles';
+import styles from './FiltersModalStyles';
 import { useSelector ,useDispatch} from 'react-redux';
-import { setStatus, setSpecies, setType, setGender, setShowModal, setpageCurrent} from '../store/Reducers';
+import { setStatus, setSpecies, setType, setGender, setShowModal, setpageCurrent} from '../../store/Reducers';
 
 const FiltersModal =({
     rerender,

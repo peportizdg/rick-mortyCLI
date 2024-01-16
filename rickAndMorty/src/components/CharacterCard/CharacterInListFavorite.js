@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { Text, View, Image, TouchableOpacity, Animated } from 'react-native';
-import styles from '../styles/CharacterInListStyles';
+import styles from './CharacterInListStyles';
 
 const CharacterInListFavorite = ({
   item,
