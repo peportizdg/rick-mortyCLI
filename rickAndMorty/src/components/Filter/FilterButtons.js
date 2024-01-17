@@ -30,14 +30,14 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'center',
       height: 30,
-      paddingHorizontal: 3,
+      paddingHorizontal: 12,
       borderRadius: 4,
       borderColor: '#97ce4c',
       borderWidth: 2,
       elevation: 3,
       backgroundColor: 'black',
       marginHorizontal: 3,
-      marginBottom:15,
+      marginBottom: 20,
     },
     butonsText: {
       fontSize: 14,
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     },
     butonsContainer:{
       flexDirection:"row", 
-      flex: 2,
+      flex: 3,
       alignSelf: 'center',
     }
   });

@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
       alignContent: 'center',
     },
     logo: {
-      height: '19%',
+      height: '18%',
       width:'100%',
     },
     backgroundImage:{
@@ -23,19 +23,20 @@ const styles = StyleSheet.create({
     },
     textInputStyle: {
       borderWidth: 1,
-      paddingLeft: '7%',
-      marginBottom: '1%',
       alignSelf: 'center',
-      flex: 2,
-      borderColor: '#7FFF00',
+      marginBottom: 10,
+      flex: 1.2,
+      borderColor: '#97ce4c',
+      borderRadius: 4,
+      borderWidth: 2,
       backgroundColor: 'black',
-      textDecorationColor: 'white',
-      color: '#7FFF00',
+      textDecorationColor: '#97ce4c',
+      color: '#97ce4c',
       alignContent: 'center',
-      maxWidth: '60%',
-      width: 200,
+      maxWidth: '80%',
+      maxHeight: '10%',
+      width: 400,
       textAlign: 'center',
-      paddingRight: '8%'
     },
     
   

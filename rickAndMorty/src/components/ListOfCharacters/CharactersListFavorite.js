@@ -17,7 +17,7 @@ const CharactersListFavorite = ({
 return(
     <View style={{flex:28}}>
       <View style={{backgroundColor: 'black'}}>
-      <Text style={{fontSize: 30, padding: 5, color: '#7FFF00', alignSelf: 'center', marginLeft: '5%'}}>Personajes Favoritos</Text>
+      <Text style={{fontSize: 30, padding: 5, color: '#97ce4c', alignSelf: 'center', marginLeft: '5%'}}>Personajes Favoritos</Text>
       </View>
       <FlatList
           ref={flatList}

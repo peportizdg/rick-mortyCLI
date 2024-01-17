@@ -8,7 +8,7 @@ import {update, ref, get, remove, onChildAdded, onChildRemoved, onValue } from "
 import CharactersListFavorite from '../ListOfCharacters/CharactersListFavorite';
 import CharacterViewModalFavorite from '../CharacterView/CharacterViewModalFavorite';
 import CommentModalInput from '../CommentModal/CommentModalInput';
-import { setFavs,setisLoading,setCharacterComment,setCharacterModal,setCharacterModalItem, setCharacterLocation, setCharacterOrigin } from '../../store/Reducers';
+import { setFavs,setisLoading,setCharacterComment,setCharacterModalFav,setCharacterModalItemFav, setCharacterLocation, setCharacterOrigin } from '../../store/Reducers';
 import { useDispatch, useSelector } from 'react-redux';
 const logo = Image.resolveAssetSource(DefaultImage2).uri;
 const fondo = Image.resolveAssetSource(DefaultImage).uri;
@@ -65,8 +65,8 @@ const FavoritePage = () =>{
       dispatch(setCharacterComment(snapshot.val()))
     })}
   const characterTab = (character) =>{
-    dispatch(setCharacterModal(true))
-    dispatch(setCharacterModalItem(character))
+    dispatch(setCharacterModalFav(true))
+    dispatch(setCharacterModalItemFav(character))
     dispatch(setCharacterLocation(character.location))
     dispatch(setCharacterOrigin(character.origin))
     setcomentario(getComment(character.id))

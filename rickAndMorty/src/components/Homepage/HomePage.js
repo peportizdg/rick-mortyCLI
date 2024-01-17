@@ -124,8 +124,8 @@ const takeFavourite=(character) =>{
     <Image source={{uri: logo}} style={styles.logo}></Image>
       <View style={styles.screen}>
       <TextInput style={styles.textInputStyle}
-        placeholder= "Enter Name"
-        placeholderTextColor= '#7FFF00'
+        placeholder= "Search character"
+        placeholderTextColor= '#97ce4c'
         value={search}
         onChangeText={(text) => {
         handleChange(text); dispatch(setpageCurrent(1))}

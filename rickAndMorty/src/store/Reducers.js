@@ -15,7 +15,9 @@ export const Reducers = createSlice({
         type:"",
         gender:"",
         characterModal:false,
+        characterModalFav:false,
         characterModalItem:[],
+        characterModalItemFav:[],
         origin:[],
         location:[],
         isFavorite:false,
@@ -72,7 +74,15 @@ export const Reducers = createSlice({
         {
             state.characterModal = action.payload
         },
+        setCharacterModalFav:(state,action) =>
+        {
+            state.characterModalFav = action.payload
+        },
         setCharacterModalItem:(state,action) =>
+        {
+            state.characterModalItem = action.payload
+        },
+        setCharacterModalItemFav:(state,action) =>
         {
             state.characterModalItem = action.payload
         },
@@ -104,6 +114,6 @@ export const Reducers = createSlice({
 })
 
 
-export const {setData, setisLoading, setpageCurrent, setSearch, setFavs, setLastPage, setShowModal, setStatus, setfilterSucces, setSpecies, setType, setGender, setCharacterModal, setCharacterModalItem, setCharacterOrigin, setCharacterLocation,setNoFavs, setIsFavorite, setCharacterComment } = Reducers.actions;
+export const {setData, setisLoading, setpageCurrent, setSearch, setFavs, setLastPage, setShowModal, setStatus, setfilterSucces, setSpecies, setType, setGender, setCharacterModal, setCharacterModalItem, setCharacterOrigin, setCharacterLocation,setNoFavs, setIsFavorite, setCharacterComment, setCharacterModalFav , setCharacterModalItemFav} = Reducers.actions;
 
 export default Reducers.reducer;

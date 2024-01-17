@@ -15,12 +15,12 @@ const CharacterViewModal =({
             <View style={styles.itemRowModal}>
               <Text style={styles.itemTextChar}>{characterModalItem.name}</Text>
               <Image style={styles.itemImage} source={{uri: characterModalItem.image}} />
-              <Text style={styles.itemText}>{characterModalItem.status}</Text>
-              <Text style={styles.itemText}>{characterModalItem.species}</Text>
-              <Text style={styles.itemText}>{characterModalItem.type}</Text>
-              <Text style={styles.itemText}>{characterModalItem.gender}</Text>
-              <Text style={styles.itemText}>{origin.name}</Text>
-              <Text style={styles.itemText}>{location.name}</Text>
+              <Text style={styles.itemText}>Status: {characterModalItem.status}</Text>
+              <Text style={styles.itemText}>Species: {characterModalItem.species}</Text>
+              <Text style={styles.itemText}>Type: {characterModalItem.type}</Text>
+              <Text style={styles.itemText}>Gender: {characterModalItem.gender}</Text>
+              <Text style={styles.itemText}>Origin: {origin.name}</Text>
+              <Text style={styles.itemText}>Location: {location.name}</Text>
             </View>
             <Text style={styles.filterTitle} onPress={() => dispatch(setCharacterModal(false))}>Close</Text>
           </View>

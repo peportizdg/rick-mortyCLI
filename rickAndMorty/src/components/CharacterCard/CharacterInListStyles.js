@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   itemRow: {
     marginBottom: '1%',
     borderWidth: 5,
-    borderColor: '#7FFF00',
+    borderColor: '#97ce4c',
     backgroundColor: 'black',
     alignContent: 'center',
     alignSelf: 'center',
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   itemText: {
     fontSize: 16,
     padding: 5,
-    color: '#7FFF00',
+    color: '#97ce4c',
     alignSelf: 'center',
     marginLeft: '5%'
   },

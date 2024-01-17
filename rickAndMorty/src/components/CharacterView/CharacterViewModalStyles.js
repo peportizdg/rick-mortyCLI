@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: '#7FFF00',
+    borderColor: '#97ce4c',
     borderWidth: 1,
   },
   itemRowModal: {
@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   itemTextChar: {
     fontSize: 20,
     padding: 2,
-    color: '#7FFF00',
+    color: '#97ce4c',
     alignSelf: 'center'
   },
   itemImage: {
@@ -41,11 +41,11 @@ const styles = StyleSheet.create({
   itemText: {
     fontSize: 16,
     padding: 1,
-    color: '#7FFF00',
+    color: '#97ce4c',
     alignSelf: 'center'
   },
   filterTitle: {
-    color: '#7FFF00',
+    color: '#97ce4c',
     flex: 1,
     fontSize: 16,
     padding: 0.5,  },

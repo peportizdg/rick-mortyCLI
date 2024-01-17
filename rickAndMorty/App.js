@@ -18,9 +18,9 @@ export default function App(){
                         
                     initialRouteName = 'home'
                     screenOptions = {({ route }) => ({
-                        tabBarActiveTintColor: '#7fff00',
+                        tabBarActiveTintColor: '#97ce4c',
                         tabBarInactiveTintColor: 'black',
-                        tabBarActiveBackgroundColor: '#7fff00',
+                        tabBarActiveBackgroundColor: '#97ce4c',
                         tabBarInactiveBackgroundColor: 'black',
                         tabBarIcon: () => {
                             if (route.name === 'home') {
