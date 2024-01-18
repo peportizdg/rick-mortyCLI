@@ -32,9 +32,9 @@ const CharacterInListFavorite = ({
           <View style={{ flexDirection: "row" }}>
             <Text style={styles.itemText}>{item.name}</Text>
             <TouchableOpacity style={styles.favoriteButton} onPress={() => toggleFavorite()}>
-              <Image style={styles.favoriteImage} source={require('../../assets/likeLleno.png')} />
+              <Image style={styles.favoriteImage} source={require('../../assets/fullfav.png')} />
             </TouchableOpacity>
-            <TouchableOpacity style={styles.favoriteButton} onPress={() => commentTab(item)}>
+            <TouchableOpacity style={styles.commentButton} onPress={() => commentTab(item)}>
               <Image style={styles.favoriteImage} source={require('../../assets/comment.png')} />
             </TouchableOpacity>
           </View>

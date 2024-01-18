@@ -16,28 +16,28 @@ export default function App(){
             <NavigationContainer >
                 <Tab.Navigator 
                         
-                    initialRouteName = 'home'
+                    initialRouteName = 'h'
                     screenOptions = {({ route }) => ({
-                        tabBarActiveTintColor: '#97ce4c',
+                        tabBarActiveTintColor: '#5e5e5e',
                         tabBarInactiveTintColor: 'black',
-                        tabBarActiveBackgroundColor: '#97ce4c',
+                        tabBarActiveBackgroundColor: '#5e5e5e',
                         tabBarInactiveBackgroundColor: 'black',
                         tabBarIcon: () => {
-                            if (route.name === 'home') {
+                            if (route.name === 'h') {
                                 return( 
-                                    <Image style = {{ width: 50, height: 50  }} source = {require('./src/assets/portal.png')} />
+                                    <Image style = {{ width: 40, height: 40, marginTop: 10  }} source = {require('./src/assets/homePageIcon.png')} />
                     )}
 
-                            else if (route.name === 'favorites') {
+                            else if (route.name === 'fav') {
                                 return (
-                                    <Image style = {{ width: 50, height: 50  }} source = {require('./src/assets/likeportal.png')} />
+                                    <Image style = {{ width: 40, height: 40, marginTop: 10  }} source = {require('./src/assets/favPageIcon.png')} />
                     )}
                         },
                                     
                     })} 
                 >
-                    <Tab.Screen name = 'home' component = {HomePage} options = {{ headerShown: false }} />
-                    <Tab.Screen  name = 'favorites' component = {FavoritePage} options = {{ headerShown: false }} />
+                    <Tab.Screen name = 'h' component = {HomePage} options = {{ headerShown: false }} />
+                    <Tab.Screen  name = 'fav' component = {FavoritePage} options = {{ headerShown: false }} />
                 </Tab.Navigator>
             </NavigationContainer>
         </Provider>

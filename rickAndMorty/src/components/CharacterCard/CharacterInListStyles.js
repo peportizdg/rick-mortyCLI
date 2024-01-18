@@ -4,7 +4,8 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   itemRow: {
     marginBottom: '1%',
-    borderWidth: 5,
+    borderWidth: 6,
+    borderRadius: 15,
     borderColor: '#97ce4c',
     backgroundColor: 'black',
     alignContent: 'center',
@@ -32,8 +33,12 @@ const styles = StyleSheet.create({
   favoriteButton: { 
       justifyContent: 'center',
       marginLeft: 'auto',
-      marginRight: '7%' ,
-  }
+      marginRight: '3%' ,
+  },
+  commentButton: {
+    justifyContent: 'center',
+    marginRight: '3%' ,
+  },
   });
   
 

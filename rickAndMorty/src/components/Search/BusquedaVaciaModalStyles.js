@@ -3,9 +3,9 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   itemTextChar: {
-    fontSize: 25,
+    fontSize: 20,
     padding: 5,
-    color: '#7FFF00',
+    color: '#97ce4c',
     alignSelf: 'center'
   },
   modalContainer: {
@@ -20,9 +20,27 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     justifyContent: 'center',
     alignItems: 'center',
-    borderColor: '#7FFF00',
-    borderWidth: 1
+    borderColor: '#97ce4c',
+    borderWidth: 3
   }, 
+  itemTextCerrar: {
+    fontSize: 20,
+    padding: 5,
+    color: '#97ce4c',
+    alignSelf: 'center',
+    borderWidth: 2,
+    borderColor: '#97ce4c',
+    borderRadius: 10,
+    marginTop: 20,
+    paddingHorizontal: 30,
+  },
+  notFoundImage: {
+    width: 100,
+    height: 100,
+    alignSelf: 'center',
+    marginTop: 20,
+    marginBottom: 20
+  },
   });
 
   export default styles;

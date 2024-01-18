@@ -27,12 +27,10 @@ const FavoritePage = () =>{
   useEffect(() => {
     dispatch(setisLoading(true))
     onChildAdded(ref(db, 'favourites/'), (char) =>{
-      //dispatch(setData(prevData => [...prevData, char.val().character]))
       getCharactersFromFavs()
     })
 
     onChildRemoved(ref(db, 'favourites/'), (char) =>{
-      //dispatch(setData(prevData => prevData.filter(element => element.id !== char.val().character.id)))
       getCharactersFromFavs()
     })
     getCharactersFromFavs()
@@ -50,7 +48,6 @@ const FavoritePage = () =>{
           snapshot.forEach((groupSnapshot) => {aux.push(JSON.parse(JSON.stringify(groupSnapshot)))}) 
           dispatch(setFavs(aux))
       } else {
-          console.log("No data available");
           dispatch(setFavs([]))
       }
       }).catch((error) => {
@@ -59,7 +56,6 @@ const FavoritePage = () =>{
   };
 
   const getComment = (id) =>{
-    console.log("22222",id);
     const refBD = ref(db, 'favourites/'+ id + '/character/comment');
     onValue(refBD, (snapshot) => {
       dispatch(setCharacterComment(snapshot.val()))
@@ -101,8 +97,7 @@ const FavoritePage = () =>{
     {!noFavs && (
         <View style={styles.screen}>
             <View backgroundColor='black'>
-            <Text style={{fontSize: 30, padding: 5, color: '#7FFF00', alignSelf: 'center', marginLeft: '5%'}}>No hay personajes favoritos</Text>
-          <Text  style={styles.screen}container>No hay personajes favoritos</Text>
+            <Text style={{fontSize: 19, color: '#97ce4c', alignSelf: 'center', marginLeft: '5%',backgroundColor: 'transparent'}}>You don't have any characters bookmarked</Text>
           </View>
         </View>)}
     {noFavs && (       

@@ -68,12 +68,12 @@ const CharacterInList = ({
             <Text style={styles.itemText}>{item.name}</Text>
             {!isFavorite && (
               <TouchableOpacity style={styles.favoriteButton} onPress={() => toggleFavorite()}>
-                <Image style={styles.favoriteImage} source={require('../../assets/likeVacio.png')} />
+                <Image style={styles.favoriteImage} source={require('../../assets/emptyfav.png')} />
               </TouchableOpacity>
             )}
             {isFavorite && (
               <TouchableOpacity style={styles.favoriteButton} onPress={() => toggleFavorite()}>
-                <Image style={styles.favoriteImage} source={require('../../assets/likeLleno.png')} />
+                <Image style={styles.favoriteImage} source={require('../../assets/fullfav.png')} />
               </TouchableOpacity>
             )}
           </View>

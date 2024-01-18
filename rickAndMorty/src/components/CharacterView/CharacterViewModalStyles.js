@@ -12,11 +12,11 @@ const styles = StyleSheet.create({
     width: '90%',
     height: '60%',
     backgroundColor: 'black',
-    borderRadius: 30,
+    borderRadius: 20,
     justifyContent: 'center',
     alignItems: 'center',
     borderColor: '#97ce4c',
-    borderWidth: 1,
+    borderWidth: 3,
   },
   itemRowModal: {
     marginBottom: '10%',

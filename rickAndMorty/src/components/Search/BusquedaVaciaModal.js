@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, Modal} from 'react-native';
+import { Text, View, Modal, Image} from 'react-native';
 import styles from './BusquedaVaciaModalStyles';
 import { useSelector ,useDispatch} from 'react-redux';
 import { setfilterSucces} from '../../store/Reducers';
@@ -13,9 +13,10 @@ const BusquedaVaciaModal =({
           <View style={styles.modalContainer}>
           <View style={styles.modalCard}>
           <View>
-              <Text style={styles.itemTextChar}> No existe ningun personaje con los filtros seleccionados  </Text>
+          <Image style={styles.notFoundImage} source={require('../../assets/notFound.png')} /> 
+          <Text style={styles.itemTextChar}> Search Unsuccesful </Text>
           </View>
-          <Text onPress={() => {dispatch(setfilterSucces(false))}} style={styles.itemTextChar}>Cerrar</Text>
+          <Text onPress={() => {dispatch(setfilterSucces(false))}} style={styles.itemTextCerrar}>Close</Text>
           </View>
           </View>
       </Modal>

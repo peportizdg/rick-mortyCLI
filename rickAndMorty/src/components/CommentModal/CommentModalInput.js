@@ -46,8 +46,8 @@ const CommentModalInput =({
                         <Text style={styles.filterTitle}>  </Text>
                         <TextInput
                             style={styles.filterTextInputStyle}
-                            placeholder="Enter comment"
-                            placeholderTextColor='#7FFF00'
+                            placeholder="Comment"
+                            placeholderTextColor='#97ce4c'
                             value={text}
                             onChangeText={handleTextChange}
                             maxLength={50} // Setting maximum length to 50 characters
