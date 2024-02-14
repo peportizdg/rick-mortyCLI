@@ -31,18 +31,34 @@ const styles = StyleSheet.create({
   filterTitle2: {
     color: '#97ce4c',
     fontSize: 20,
+    flex: 1,
+    paddingLeft: 10, // Add left padding to shift text to the left
   },
-  textFilters: {
+  activeFilter: {
     borderColor: '#97ce4c',
+    backgroundColor: '#97ce4c', // Background color changes to green
     borderWidth: 2,
     borderRadius: 10,
     marginHorizontal: '3%',
     flex: 0,
-    color: '#97ce4c',
+    color: '#000', // Text color changes to black
     alignSelf: 'center',
     alignContent: 'center',
     paddingHorizontal: '1%',
   },
+  
+  inactiveFilter: {
+      borderColor: '#97ce4c',
+      borderWidth: 2,
+      borderRadius: 10,
+      marginHorizontal: '3%',
+      flex: 0,
+      color: '#97ce4c',
+      alignSelf: 'center',
+      alignContent: 'center',
+      paddingHorizontal: '1%',
+    },
+  
   textInputFilters: {
     flexDirection: "row",
     marginTop: '1%',
@@ -62,12 +78,11 @@ const styles = StyleSheet.create({
     padding: '2%',
   },
   fixedFilters2: {
-    flexDirection: "row",
+    flexDirection: "column",
     marginTop: '2%',
     flex: 2,
     marginBottom: '10%',
-    alignContent: 'center',
-    alignSelf: 'center',
+    alignItems: 'flex-start', // Align items to the start (left)
   },
   fixedFilters3: {
     flexDirection: "row",
