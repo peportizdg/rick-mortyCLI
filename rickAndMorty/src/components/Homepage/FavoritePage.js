@@ -1,4 +1,4 @@
-import React,{useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef} from 'react';
 import { View, ActivityIndicator, Image, Text, SafeAreaView, ImageBackground } from 'react-native';
 import styles from './HomePageStyles.js';
 import DefaultImage from '../../assets/fondo.png';
@@ -12,7 +12,6 @@ import { setFavs,setisLoading,setCharacterComment,setCharacterModalFav,setCharac
 import { useDispatch, useSelector } from 'react-redux';
 const logo = Image.resolveAssetSource(DefaultImage2).uri;
 const fondo = Image.resolveAssetSource(DefaultImage).uri;
-
 const FavoritePage = () =>{
   const [commentModal, setCommentModal]= useState(false)
   const [characterIDComment, setCharacterIDComment] = useState([])
@@ -85,9 +84,16 @@ const FavoritePage = () =>{
           <ActivityIndicator size ="large"/>
         </View> : null)
     }  
-  const takeFavourite=(character) =>{
-    remove(ref(db, 'favourites/' + character.id));
-  }
+    const takeFavourite = (character) => {
+      remove(ref(db, 'favourites/' + character.id))
+        .then(() => {
+          // Update the state after successful removal
+          getCharactersFromFavs();
+        })
+        .catch((error) => {
+          console.error("Error removing character from favorites: ", error);
+        });
+    };
   return (
     <SafeAreaView style={{backgroundColor: 'black'}}>
     <>

@@ -13,7 +13,6 @@ import { db } from '../../../firebaseConfig.js';
 import { useSelector ,useDispatch} from 'react-redux';
 import { setLastPage, setStatus, setCharacterModalItem, setCharacterLocation, setCharacterOrigin, setType, setSpecies, setGender, setCharacterModal,setData, setisLoading, setfilterSucces, setSearch, setShowModal, setpageCurrent} from '../../store/Reducers';
 
-
 const logo = Image.resolveAssetSource(DefaultImage2).uri;
 const fondo = Image.resolveAssetSource(DefaultImage).uri;
 

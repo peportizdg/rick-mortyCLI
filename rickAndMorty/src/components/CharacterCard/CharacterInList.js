@@ -1,9 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Text, View, Image, TouchableOpacity, Animated } from 'react-native';
 import styles from './CharacterInListStyles';
 import { ref, onChildAdded, onChildRemoved } from "firebase/database";
 import { db } from '../../../firebaseConfig.js';
-import { useSelector } from 'react-redux';
 
 const CharacterInList = ({
   item,
@@ -12,7 +11,7 @@ const CharacterInList = ({
   takeFavourite,
 }) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  const { data } = useSelector(state => state.application);
+  const pulsateAnimation = useRef(new Animated.Value(1)).current; // Define pulsateAnimation here
 
   useEffect(() => {
     const charactersRef = ref(db, 'favourites/');
@@ -30,9 +29,7 @@ const CharacterInList = ({
       }
     });
 
-  }, [data]);
-
-  const pulsateAnimation = useRef(new Animated.Value(1)).current;
+  }, []);
 
   const pulsate = (positive = true) => {
     Animated.sequence([

@@ -20,7 +20,7 @@ export const Reducers = createSlice({
         characterModalItemFav:[],
         origin:[],
         location:[],
-        isFavorite:false,
+        isFavorite: false, // New state for indicating if a character is a favorite
         noFavs:true,
         favs:[],
         comment: ""
