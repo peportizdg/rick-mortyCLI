@@ -75,7 +75,6 @@ const HomePage = () =>{
         if(res.results !=undefined){
 
           dispatch(setLastPage(res.info.next))
-          console.log(favs)
           const resultado = res.results.filter(char1 => {
             return !favs.some(favchar => favchar.character.id === char1.id);
           });
@@ -99,7 +98,9 @@ const HomePage = () =>{
   }
   const handleLoadMore = () => {
     if(lastPage != null){
+      console.log("Cambia de pagina " + pageCurrent ,"a", + (pageCurrent + 1))
       dispatch(setpageCurrent(pageCurrent + 1))
+      console.log(pageCurrent)
       dispatch(setisLoading(true))
   } }
 

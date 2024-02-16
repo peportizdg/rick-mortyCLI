@@ -87,7 +87,7 @@ const FiltersModal = ({ rerender }) => {
           </View>
           <View style={styles.closeButtons}>
             <TouchableOpacity onPress={() => dispatch(setShowModal(false))}>
-              <Text style={styles.closeButtonText}>Apply</Text>
+              <Text style={styles.closeButtonText}>Accept</Text>
             </TouchableOpacity>
             <TouchableOpacity onPress={() => dispatch(setShowModal(false))}>
               <Text style={styles.closeButtonText}>Close</Text>

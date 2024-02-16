@@ -57,27 +57,23 @@ const CharacterInList = ({
   };
 
   return (
-    <Animated.View style={{ transform: [{ scale: pulsateAnimation }] }}>
-      <View style={styles.itemRow}>
-        <TouchableOpacity onPress={() => characterTab(item)}>
-          <Image style={styles.itemImage} source={{ uri: item.image }} />
-          <View style={{ flexDirection: "row" }}>
-            <Text style={styles.itemText}>{item.name}</Text>
-            {!isFavorite && (
-              <TouchableOpacity style={styles.favoriteButton} onPress={() => toggleFavorite()}>
-                <Image style={styles.favoriteImage} source={require('../../assets/emptyfav.png')} />
-              </TouchableOpacity>
-            )}
-            {isFavorite && (
-              <TouchableOpacity style={styles.favoriteButton} onPress={() => toggleFavorite()}>
-                <Image style={styles.favoriteImage} source={require('../../assets/fullfav.png')} />
-              </TouchableOpacity>
-            )}
+      <Animated.View style={[styles.animatedView, isFavorite ? styles.favoriteStyle : styles.nonFavoriteStyle]}>
+        {!isFavorite && (
+          <View style={styles.itemRow}>
+            <TouchableOpacity onPress={() => characterTab(item)}>
+              <Image style={styles.itemImage} source={{ uri: item.image }} />
+              <View style={{ flexDirection: "row" }}>
+                <Text style={styles.itemText}>{item.name}</Text>
+                <TouchableOpacity style={styles.favoriteButton} onPress={() => toggleFavorite()}>
+                  <Image style={styles.favoriteImage} source={require('../../assets/emptyfav.png')} />
+                </TouchableOpacity>
+              </View>
+            </TouchableOpacity>
           </View>
-        </TouchableOpacity>
-      </View>
-    </Animated.View>
-  );
+        )}
+      </Animated.View>
+    );
+    
 };
 
 export default CharacterInList;

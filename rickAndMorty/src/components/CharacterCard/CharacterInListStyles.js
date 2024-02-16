@@ -39,6 +39,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginRight: '3%' ,
   },
+  favoriteStyle: {
+
+  },
+  nonFavoriteStyle: {
+    },
   });
   
 
