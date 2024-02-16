@@ -124,12 +124,15 @@ const clearModalFilters = () =>{
   dispatch(setType(""))
   dispatch(setGender(""))
 }
-const characterTab = (character) =>{
-  dispatch(setCharacterModal(true))
-  dispatch(setCharacterModalItem(character))
-  dispatch(setCharacterLocation(character.location))
-  dispatch(setCharacterOrigin(character.origin))
-  }
+const characterTab = (character) => {
+  setTimeout(() => {
+    dispatch(setCharacterModal(true));
+    dispatch(setCharacterModalItem(character));
+    dispatch(setCharacterLocation(character.location));
+    dispatch(setCharacterOrigin(character.origin));
+  }, 200);
+};
+
 
 const addFavourite=(character) => {
   set(ref(db, 'favourites/' + character.id),{

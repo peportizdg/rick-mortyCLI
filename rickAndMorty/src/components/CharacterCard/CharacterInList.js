@@ -8,10 +8,8 @@ const CharacterInList = ({
   item,
   characterTab,
   addFavourite,
-  takeFavourite,
 }) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  const pulsateAnimation = useRef(new Animated.Value(1)).current; // Define pulsateAnimation here
 
   useEffect(() => {
     const charactersRef = ref(db, 'favourites/');
@@ -26,15 +24,31 @@ const CharacterInList = ({
     onChildRemoved(charactersRef, (char) => {
       if (char.val().character.id === item.id) {
         setIsFavorite(false);
+        swipeRightAnimation.setValue(0);
       }
     });
 
   }, []);
 
-  const pulsate = (positive = true) => {
+  const swipeRightAnimation = useRef(new Animated.Value(0)).current;
+  const pulsateAnimation = useRef(new Animated.Value(1)).current;
+
+  const swipeRight = () => {
+    Animated.timing(swipeRightAnimation, {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true,
+    }).start(() => addFavourite(item));
+  };
+
+  const toggleFavorite = () => {
+    swipeRight();
+  };
+
+  const pulsate = () => {
     Animated.sequence([
       Animated.timing(pulsateAnimation, {
-        toValue: positive ? 1.2 : 0.8,
+        toValue: 1.1,
         duration: 200,
         useNativeDriver: true,
       }),
@@ -46,34 +60,51 @@ const CharacterInList = ({
     ]).start();
   };
 
-  const toggleFavorite = () => {
-    if (isFavorite) {
-      takeFavourite(item);
-      pulsate(false); // Negative pulsate 
-    } else {
-      addFavourite(item);
-      pulsate(); // Positive pulsate 
-    }
-  };
-
   return (
-      <Animated.View style={[styles.animatedView, isFavorite ? styles.favoriteStyle : styles.nonFavoriteStyle]}>
-        {!isFavorite && (
-          <View style={styles.itemRow}>
-            <TouchableOpacity onPress={() => characterTab(item)}>
-              <Image style={styles.itemImage} source={{ uri: item.image }} />
-              <View style={{ flexDirection: "row" }}>
-                <Text style={styles.itemText}>{item.name}</Text>
-                <TouchableOpacity style={styles.favoriteButton} onPress={() => toggleFavorite()}>
-                  <Image style={styles.favoriteImage} source={require('../../assets/emptyfav.png')} />
-                </TouchableOpacity>
-              </View>
-            </TouchableOpacity>
-          </View>
-        )}
-      </Animated.View>
-    );
-    
+    <Animated.View style={[styles.animatedView, {
+      opacity: swipeRightAnimation.interpolate({
+        inputRange: [0, 1],
+        outputRange: [1, 0],
+      }),
+      transform: [{
+        translateX: swipeRightAnimation.interpolate({
+          inputRange: [0, 1],
+          outputRange: [0, 500], // Adjust the distance for the swipe effect
+        }),
+      }],
+    }]}>
+      {!isFavorite && (
+        <Animated.View style={[styles.itemRow,{
+          transform: [{ scale: pulsateAnimation }],
+        }]}>
+          <TouchableOpacity
+            onPress={() => {
+              characterTab(item);
+              pulsate();
+            }}
+          >
+              <Image
+              style={
+                styles.itemImage}
+              source={{ uri: item.image }}
+            />
+            <View style={{ flexDirection: "row" }}>
+              <Text style={styles.itemText}>{item.name}</Text>
+              <TouchableOpacity
+                style={styles.favoriteButton}
+                onPress={() => toggleFavorite()}
+              >
+                <Image
+                  style={styles.favoriteImage}
+                  source={require('../../assets/emptyfav.png')}
+                />
+              </TouchableOpacity>
+            </View>
+          </TouchableOpacity>
+        </Animated.View>
+      )}
+    </Animated.View>
+  );
 };
 
 export default CharacterInList;
