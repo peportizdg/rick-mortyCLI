@@ -1,4 +1,4 @@
-import React,{useEffect, useRef} from 'react';
+import React,{useEffect, useRef, useState} from 'react';
 import { View, ActivityIndicator, Image, TextInput, SafeAreaView, ImageBackground } from 'react-native';
 import styles from './HomePageStyles.js';
 import DefaultImage from '../../assets/fondo.png';
@@ -8,27 +8,44 @@ import CharactersList from '../ListOfCharacters/CharactersList';
 import FiltersModal from '../Filter/FiltersModal';
 import BusquedaVaciaModal from '../Search/BusquedaVaciaModal';
 import CharacterViewModal from '../CharacterView/CharacterViewModal';
-import {ref, set, remove } from "firebase/database";
+import {ref, set, remove , get} from "firebase/database";
 import { db } from '../../../firebaseConfig.js';
 import { useSelector ,useDispatch} from 'react-redux';
-import { setLastPage, setStatus, setCharacterModalItem, setCharacterLocation, setCharacterOrigin, setType, setSpecies, setGender, setCharacterModal,setData, setisLoading, setfilterSucces, setSearch, setShowModal, setpageCurrent} from '../../store/Reducers';
+import { setLastPage, setStatus, setCharacterModalItem, setCharacterLocation, setCharacterOrigin, setType, setSpecies, setGender, setCharacterModal,setData, setisLoading, setfilterSucces, setSearch, setShowModal, setpageCurrent, setFavs} from '../../store/Reducers';
 
 const logo = Image.resolveAssetSource(DefaultImage2).uri;
 const fondo = Image.resolveAssetSource(DefaultImage).uri;
 
 const HomePage = () =>{
-  
-  const {data,isLoading, pageCurrent, lastPage, characterModal, search, showModal ,status, filterSucces, characterModalItem, species, type, origin, gender, location}  = useSelector(state => state.application);
+  const {data,favs,isLoading, pageCurrent, lastPage, characterModal, search, showModal ,status, filterSucces, characterModalItem, species, type, origin, gender, location}  = useSelector(state => state.application);
   const apiURL = "https://rickandmortyapi.com/api/character/?page="+pageCurrent+"&name="+search+"&status="+status+"&species="+species+"&type="+type+"&gender="+gender
   const flatList = useRef();
+  const [datos, setDatos] = useState([])
   const moveToTop = () => flatList.current.scrollToIndex({ index: 0 });
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
+  
+
   useEffect(() => {
-    setisLoading(true)
-    getData()
+    dispatch(setisLoading(true))
+    getCharactersFromFavs();
+    dispatch(setpageCurrent(1))
+    getData();
     return () => {
     }
   }, [pageCurrent])
+  const getCharactersFromFavs = () => {
+    const aux = []
+    get(ref(db,'favourites')).then((snapshot) => {
+      if (snapshot.exists()) {
+          snapshot.forEach((groupSnapshot) => {aux.push(JSON.parse(JSON.stringify(groupSnapshot)))}) 
+          dispatch(setFavs(aux))
+      } else {
+          dispatch(setFavs([]))
+      }
+      }).catch((error) => {
+          console.error(error);
+      });     
+  };
   const getFiltertData =async () => {
     fetch(apiURL)
       .then(res => res.json())
@@ -46,21 +63,26 @@ const HomePage = () =>{
     }
         );
   }
-  const getData =async () => {
+ const getData = () => {
     fetch(apiURL)
       .then(res => res.json())
       .then(res => {
         if(res.results !=undefined){
           dispatch(setLastPage(res.info.next))
-          dispatch(setData(data.concat(res.results)))
+          const resultado = res.results.filter(char1 => {
+            return !favs.some(favchar => favchar.character.id === char1.id);
+          });
+          dispatch(setData(data.concat(resultado)))
+          setDatos(resultado)
           dispatch(setisLoading(false))
         } else {
           dispatch(setfilterSucces(true))
           dispatch(clearFilters())
         }
       }
-          );
-  }
+      );
+      console.log(datos)
+  } 
   const renderFooter = () => {
     return (
       isLoading ?
@@ -135,7 +157,7 @@ const takeFavourite=(character) =>{
         clearModalFilters={clearModalFilters}
         clearFilters={clearFilters}/>
       <CharactersList 
-        data={data}
+        data={datos}
         handleLoadMore={handleLoadMore}
         renderFooter={renderFooter}
         characterTab={characterTab}

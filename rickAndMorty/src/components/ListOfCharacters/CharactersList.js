@@ -11,9 +11,10 @@ const CharactersList = ({
     flatList,
     addFavourite,
     takeFavourite,
+    data
 
 }) => {
-  const {data}  = useSelector(state => state.application);
+  //const {data}  = useSelector(state => state.application);
 return(
     <View style={{flex:28}}>
       <FlatList
@@ -32,7 +33,7 @@ return(
           keyExtractor={(item, index) => index.toString()}
           ListFooterComponent={renderFooter}
           onEndReached={handleLoadMore}
-          onEndReachedThreshold={2.5} 
+          onEndReachedThreshold={3.5} 
       />
       </View>
       
