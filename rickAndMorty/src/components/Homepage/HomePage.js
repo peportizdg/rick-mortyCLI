@@ -23,19 +23,22 @@ const HomePage = () =>{
   const [datos, setDatos] = useState([])
   const moveToTop = () => flatList.current.scrollToIndex({ index: 0 });
   const dispatch = useDispatch();
-  
+  useEffect(() => {
+   
+  }, [])
+
 
   useEffect(() => {
     dispatch(setisLoading(true))
-    getCharactersFromFavs();
-    dispatch(setpageCurrent(1))
+    
+    //dispatch(setpageCurrent(1))
     getData();
     return () => {
     }
   }, [pageCurrent])
-  const getCharactersFromFavs = () => {
+  const getCharactersFromFavs =  () => {
     const aux = []
-    get(ref(db,'favourites')).then((snapshot) => {
+   get(ref(db,'favourites')).then((snapshot) => {
       if (snapshot.exists()) {
           snapshot.forEach((groupSnapshot) => {aux.push(JSON.parse(JSON.stringify(groupSnapshot)))}) 
           dispatch(setFavs(aux))
@@ -63,17 +66,21 @@ const HomePage = () =>{
     }
         );
   }
- const getData = () => {
-    fetch(apiURL)
+ const getData = async () => {
+  getCharactersFromFavs()
+  
+    await fetch(apiURL)
       .then(res => res.json())
       .then(res => {
         if(res.results !=undefined){
+
           dispatch(setLastPage(res.info.next))
+          console.log(favs)
           const resultado = res.results.filter(char1 => {
             return !favs.some(favchar => favchar.character.id === char1.id);
           });
           dispatch(setData(data.concat(resultado)))
-          setDatos(resultado)
+          setDatos((resultado))
           dispatch(setisLoading(false))
         } else {
           dispatch(setfilterSucces(true))
@@ -81,7 +88,7 @@ const HomePage = () =>{
         }
       }
       );
-      console.log(datos)
+      
   } 
   const renderFooter = () => {
     return (
@@ -157,7 +164,7 @@ const takeFavourite=(character) =>{
         clearModalFilters={clearModalFilters}
         clearFilters={clearFilters}/>
       <CharactersList 
-        data={datos}
+        data={data}
         handleLoadMore={handleLoadMore}
         renderFooter={renderFooter}
         characterTab={characterTab}
@@ -186,6 +193,6 @@ const takeFavourite=(character) =>{
       </View>
       </ImageBackground>    
               </SafeAreaView>
-  )
+  );
 }
 export default HomePage;

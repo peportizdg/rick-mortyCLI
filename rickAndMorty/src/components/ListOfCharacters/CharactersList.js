@@ -33,7 +33,7 @@ return(
           keyExtractor={(item, index) => index.toString()}
           ListFooterComponent={renderFooter}
           onEndReached={handleLoadMore}
-          onEndReachedThreshold={3.5} 
+          onEndReachedThreshold={1} 
       />
       </View>
       

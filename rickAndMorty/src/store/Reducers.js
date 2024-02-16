@@ -5,7 +5,7 @@ export const Reducers = createSlice({
     initialState:{
         data: [],
         isLoading: false,
-        pageCurrent: 1,
+        pageCurrent: 0,
         search: "",
         lastPage: "",
         showModal:false,
