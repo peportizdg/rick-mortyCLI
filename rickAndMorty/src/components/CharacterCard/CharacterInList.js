@@ -18,6 +18,8 @@ const CharacterInList = ({
     onChildAdded(charactersRef, (char) => {
       if (char.val().character.id === item.id) {
         setIsFavorite(true);
+        swipeRightAnimation.setValue(1);
+
       }
     });
 
@@ -49,12 +51,12 @@ const CharacterInList = ({
     Animated.sequence([
       Animated.timing(pulsateAnimation, {
         toValue: 1.1,
-        duration: 200,
+        duration: 50,
         useNativeDriver: true,
       }),
       Animated.timing(pulsateAnimation, {
         toValue: 1,
-        duration: 200,
+        duration: 50,
         useNativeDriver: true,
       }),
     ]).start();

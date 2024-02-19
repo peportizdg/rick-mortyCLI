@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, FlatList} from 'react-native';
 import CharacterInList from '../CharacterCard/CharacterInList';
 import { useSelector } from 'react-redux';
@@ -14,10 +14,16 @@ const CharactersList = ({
     data
 
 }) => {
+  const [listKey, setListKey] = useState(0);
+  useEffect(() => {
+      // Update the key whenever the favs array changes
+      setListKey(prevKey => prevKey + 1);
+  }, [data]);
   //const {data}  = useSelector(state => state.application);
 return(
     <View style={{flex:28}}>
       <FlatList
+          key={listKey.toString()}
           ref={flatList}
           style={styles.container}
           data={data}
@@ -33,7 +39,7 @@ return(
           keyExtractor={(item, index) => index.toString()}
           ListFooterComponent={renderFooter}
           onEndReached={handleLoadMore}
-          onEndReachedThreshold={6} 
+          onEndReachedThreshold={5} 
       />
       </View>
       

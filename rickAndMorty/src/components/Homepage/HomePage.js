@@ -30,8 +30,6 @@ const HomePage = () =>{
 
   useEffect(() => {
     dispatch(setisLoading(true))
-    
-    //dispatch(setpageCurrent(1))
     getData();
     return () => {
     }
@@ -125,12 +123,10 @@ const clearModalFilters = () =>{
   dispatch(setGender(""))
 }
 const characterTab = (character) => {
-  setTimeout(() => {
     dispatch(setCharacterModal(true));
     dispatch(setCharacterModalItem(character));
     dispatch(setCharacterLocation(character.location));
     dispatch(setCharacterOrigin(character.origin));
-  }, 200);
 };
 
 

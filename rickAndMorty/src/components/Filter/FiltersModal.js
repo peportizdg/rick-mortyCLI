@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, View, TextInput, TouchableOpacity, Modal } from 'react-native';
 import styles from './FiltersModalStyles';
 import { useSelector, useDispatch } from 'react-redux';
@@ -17,6 +17,10 @@ const FiltersModal = ({ rerender }) => {
     dispatch(setStatus(newStatus));
     setActiveStatus(newStatus === activeStatus ? null : newStatus);
   };
+  useEffect(() => {
+    setActiveStatus(status);
+    setActiveGender(gender);
+  }, [showModal]);
 
   const toggleGender = (newGender) => {
     dispatch(setpageCurrent(1));

@@ -32,7 +32,6 @@ const FavoritePage = () =>{
     onChildRemoved(ref(db, 'favourites/'), (char) =>{
       getCharactersFromFavs()
     })
-    getCharactersFromFavs()
   }, [])
   useEffect(() => {
     if (favs.length===0) {
