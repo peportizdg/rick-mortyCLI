@@ -20,7 +20,6 @@ const HomePage = () =>{
   const {data,favs,isLoading, pageCurrent, lastPage, characterModal, search, showModal ,status, filterSucces, characterModalItem, species, type, origin, gender, location}  = useSelector(state => state.application);
   const apiURL = "https://rickandmortyapi.com/api/character/?page="+pageCurrent+"&name="+search+"&status="+status+"&species="+species+"&type="+type+"&gender="+gender
   const flatList = useRef();
-  const [datos, setDatos] = useState([])
   const moveToTop = () => flatList.current.scrollToIndex({ index: 0 });
   const dispatch = useDispatch();
   useEffect(() => {
@@ -71,13 +70,8 @@ const HomePage = () =>{
       .then(res => res.json())
       .then(res => {
         if(res.results !=undefined){
-
           dispatch(setLastPage(res.info.next))
-          const resultado = res.results.filter(char1 => {
-            return !favs.some(favchar => favchar.character.id === char1.id);
-          });
-          dispatch(setData(data.concat(resultado)))
-          setDatos((resultado))
+          dispatch(setData(data.concat(res.results)))
           dispatch(setisLoading(false))
         } else {
           dispatch(setfilterSucces(true))
@@ -95,12 +89,14 @@ const HomePage = () =>{
       </View> : null)
   }
   const handleLoadMore = () => {
-    if(lastPage != null){
-      console.log("Cambia de pagina " + pageCurrent ,"a", + (pageCurrent + 1))
-      dispatch(setpageCurrent(pageCurrent + 1))
-      console.log(pageCurrent)
-      dispatch(setisLoading(true))
-  } }
+    if (lastPage != null) {
+        dispatch(setisLoading(true));
+        setTimeout(() => {
+            dispatch(setpageCurrent(pageCurrent + 1));
+        }, 900); 
+
+    }
+};
 
 
   const handleChange = (text) =>{

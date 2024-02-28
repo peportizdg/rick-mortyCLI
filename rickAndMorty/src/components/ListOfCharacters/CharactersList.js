@@ -11,19 +11,22 @@ const CharactersList = ({
     flatList,
     addFavourite,
     takeFavourite,
-    data
+    data,
 
-}) => {
-  const [listKey, setListKey] = useState(0);
+})=> {
+ /* const [listKey, setListKey] = useState(0);
+
   useEffect(() => {
-      // Update the key whenever the favs array changes
+      // Update the key whenever the data array changes
       setListKey(prevKey => prevKey + 1);
-  }, [data]);
-  //const {data}  = useSelector(state => state.application);
+  }, [data]);*/
+  //const {data}  = useSelector(state => state.application);*/
+
+  
 return(
     <View style={{flex:28}}>
       <FlatList
-          key={listKey.toString()}
+          //key={listKey.toString()}
           ref={flatList}
           style={styles.container}
           data={data}
@@ -39,7 +42,7 @@ return(
           keyExtractor={(item, index) => index.toString()}
           ListFooterComponent={renderFooter}
           onEndReached={handleLoadMore}
-          onEndReachedThreshold={5} 
+          onEndReachedThreshold={0.5} 
       />
       </View>
       
