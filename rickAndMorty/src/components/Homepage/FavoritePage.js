@@ -77,11 +77,6 @@ const FavoritePage = () =>{
        })
      }
     const renderFooter = () => {
-      return (
-        isLoading ?
-        <View style ={styles.loader}>
-          <ActivityIndicator size ="large"/>
-        </View> : null)
     }  
     const takeFavourite = (character) => {
       remove(ref(db, 'favourites/' + character.id))
