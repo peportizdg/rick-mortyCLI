@@ -14,16 +14,15 @@ const CharactersList = ({
     data,
 
 })=> {
- /* const [listKey, setListKey] = useState(0);
+  const [listKey, setListKey] = useState(0);
 
   useEffect(() => {
-      // Update the key whenever the data array changes
       setListKey(prevKey => prevKey + 1);
-  }, [data]);*/
+  }, [data]);
 return(
     <View style={{flex:28}}>
       <FlatList
-          //key={listKey.toString()}
+          //key={listKey.toString()}   //test!
           ref={flatList}
           style={styles.container}
           data={data}
