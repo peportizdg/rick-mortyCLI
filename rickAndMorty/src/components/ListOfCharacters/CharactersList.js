@@ -20,9 +20,6 @@ const CharactersList = ({
       // Update the key whenever the data array changes
       setListKey(prevKey => prevKey + 1);
   }, [data]);*/
-  //const {data}  = useSelector(state => state.application);*/
-
-  
 return(
     <View style={{flex:28}}>
       <FlatList
